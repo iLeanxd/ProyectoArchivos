@@ -12,10 +12,28 @@ module.exports = async function (context, req) {
         return;
     }
 
+    // Recibir término de búsqueda si viene desde la UI (?q=12345678)
+    const search = req.query.q || req.query.search || '';
     let pool;
+
     try {
         pool = await sql.connect(connectionString);
-        const result = await pool.request().query('SELECT * FROM Personas ORDER BY Id ASC');
+        const request = pool.request();
+
+        let queryStr = `SELECT TOP 50 NumeroActa, DNI, Nombres, Apellidos, FechaNacimiento, LugarNacimiento FROM Personas`;
+
+        // Si el usuario escribió un filtro en el buscador de la web
+        if (search.trim() !== '') {
+            request.input('searchParam', sql.VarChar, `%${search.trim()}%`);
+            queryStr = `SELECT TOP 50 NumeroActa, DNI, Nombres, Apellidos, FechaNacimiento, LugarNacimiento 
+                        FROM Personas 
+                        WHERE DNI LIKE @searchParam 
+                           OR NumeroActa LIKE @searchParam 
+                           OR Nombres LIKE @searchParam 
+                           OR Apellidos LIKE @searchParam`;
+        }
+
+        const result = await request.query(queryStr);
 
         context.res = {
             status: 200,
@@ -26,7 +44,7 @@ module.exports = async function (context, req) {
         context.res = {
             status: 500,
             headers: { 'Content-Type': 'application/json; charset=utf-8' },
-            body: { error: 'Error al conectar con Azure SQL', details: err.message }
+            body: { error: 'Error al consultar Azure SQL', details: err.message }
         };
     } finally {
         if (pool) {
