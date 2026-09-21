@@ -1,35 +1,47 @@
-const sql = require('mssql');
-
 module.exports = async function (context, req) {
-    const connectionString = process.env.SQL_CONNECTION_STRING;
+    // 1. Cargar la librería de forma segura
+    let sql;
+    try {
+        sql = require('mssql');
+    } catch (libError) {
+        context.res = {
+            status: 200,
+            headers: { 'Content-Type': 'application/json; charset=utf-8' },
+            body: { 
+                estado: "ERROR_LIBRERIA", 
+                detalle: "La librería mssql no está instalada correctamente en el servidor de Azure.",
+                mensaje: libError.message 
+            }
+        };
+        return;
+    }
 
-    // 1. Diagnóstico de variable de entorno
+    // 2. Verificar la variable de entorno
+    const connectionString = process.env.SQL_CONNECTION_STRING;
     if (!connectionString) {
         context.res = {
             status: 200,
             headers: { 'Content-Type': 'application/json; charset=utf-8' },
             body: { 
                 estado: "ERROR_CONFIGURACION", 
-                detalle: "La variable de entorno SQL_CONNECTION_STRING no se encuentra definida en Azure." 
+                detalle: "La variable de entorno SQL_CONNECTION_STRING no está configurada en Azure." 
             }
         };
         return;
     }
 
+    // 3. Conexión a la base de datos
     try {
-        // 2. Intentar la conexión a Azure SQL
         const pool = await sql.connect(connectionString);
         const result = await pool.request().query('SELECT * FROM Personas ORDER BY Id ASC');
         await pool.close();
 
-        // Respuesta exitosa
         context.res = {
             status: 200,
             headers: { 'Content-Type': 'application/json; charset=utf-8' },
             body: result.recordset
         };
     } catch (err) {
-        // 3. Diagnóstico de error de base de datos
         context.res = {
             status: 200,
             headers: { 'Content-Type': 'application/json; charset=utf-8' },
