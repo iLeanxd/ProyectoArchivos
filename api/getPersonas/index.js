@@ -3,27 +3,38 @@ const sql = require('mssql');
 module.exports = async function (context, req) {
     const connectionString = process.env.SQL_CONNECTION_STRING;
 
+    if (!connectionString) {
+        context.res = {
+            status: 500,
+            headers: { 'Content-Type': 'application/json' },
+            body: { error: 'La variable SQL_CONNECTION_STRING no está configurada en Azure.' }
+        };
+        return;
+    }
+
+    let pool;
     try {
-        // Conectar a la base de datos
-        await sql.connect(connectionString);
+        // Conexión a la base de datos
+        pool = await sql.connect(connectionString);
 
-        // Ejecutar la consulta a la tabla Personas
-        const result = await sql.query`SELECT * FROM Personas ORDER BY Id ASC`;
+        // Consulta a la tabla Personas
+        const result = await pool.request().query('SELECT * FROM Personas ORDER BY Id ASC');
 
-        // Responder con los datos en formato JSON
         context.res = {
             status: 200,
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: result.recordset
         };
     } catch (err) {
+        // Devuelve el mensaje de error visible en pantalla
         context.res = {
             status: 500,
-            body: { error: 'Error al consultar la base de datos', details: err.message }
+            headers: { 'Content-Type': 'application/json' },
+            body: { error: 'Error al conectar a Azure SQL', details: err.message }
         };
     } finally {
-        await sql.close();
+        if (pool) {
+            await pool.close();
+        }
     }
 };
