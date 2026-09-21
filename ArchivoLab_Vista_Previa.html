@@ -1,0 +1,184 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ArchivoLab · Estructura de persona 1</title><style>/* ARCHIVOLAB · PERSONA 1
+   Diseño inspirado en fichas, índices y carpetas de archivo.
+   Solo estructura, navegación, información académica y áreas de integración. */
+
+html:root {
+  font-family: Arial, "Segoe UI", sans-serif;
+  background: #f4f1e9;
+  color: #262521;
+  color-scheme: light;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+html body { display: block; margin: 0; min-width: 320px; min-height: 100vh; place-items: normal; background: #f4f1e9; color: #262521; }
+body #root { width: 100%; max-width: none; padding: 0; margin: 0; text-align: left; }
+.oa-app, .oa-app *, .oa-app *::before, .oa-app *::after { box-sizing: border-box; }
+.oa-app { --oa-paper: #f4f1e9; --oa-ink: #262521; --oa-orange: #c74b32; --oa-line: #d9d4c9; min-height: 100vh; line-height: 1.5; }
+.oa-app h1, .oa-app h2, .oa-app h3, .oa-app p { margin: 0; }
+.oa-app a { color: inherit; text-decoration: none; }
+.oa-app :focus-visible { outline: 3px solid #c74b32; outline-offset: 5px; }
+.oa-container { width: min(1280px, calc(100% - 96px)); margin-inline: auto; }
+.oa-icon { width: 20px; height: 20px; flex-shrink: 0; vertical-align: middle; }
+.oa-skip { position: fixed; left: 20px; top: -100px; z-index: 30; padding: 12px 18px; background: #262521; color: #fff!important; }
+.oa-skip:focus { top: 12px; }
+
+/* Cabecera y navegación */
+.oa-header { border-bottom: 1px solid var(--oa-line); }
+.oa-header-inner { min-height: 100px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+.oa-brand { display: flex; align-items: center; gap: 12px; font-size: 25px; font-weight: 700; letter-spacing: -1.1px; line-height: 1; }
+.oa-brand-mark { width: 43px; height: 45px; display: flex; align-items: center; justify-content: center; background: var(--oa-orange); color: #fff8ed; font-family: Georgia, serif; font-size: 41px; font-weight: 400; padding-bottom: 7px; }
+.oa-brand-mark > span { font-size: 25px; align-self: flex-end; padding-bottom: 2px; margin-left: -3px; }
+.oa-brand-period { color: var(--oa-orange); }
+.oa-brand small { display: block; margin-top: 9px; font-family: Consolas, "Courier New", monospace; font-size: 8px; letter-spacing: 1.1px; font-weight: 400; }
+.oa-navigation { display: flex; align-items: center; gap: 36px; }
+.oa-navigation a { display: inline-flex; align-items: baseline; gap: 8px; padding-block: 10px; font-size: 12px; font-weight: 500; }
+.oa-navigation a > span { font-family: Consolas, monospace; color: var(--oa-orange); font-size: 9px; }
+.oa-navigation a:hover { color: var(--oa-orange); }
+.oa-university-mark { display: block; padding-left: 28px; border-left: 1px solid var(--oa-line); font-size: 24px; letter-spacing: -1px; font-weight: 700; line-height: 1.05; }
+.oa-university-mark > span { display: block; margin-top: 8px; font-family: Consolas, monospace; font-size: 8px; letter-spacing: .9px; font-weight: 400; color: #736e65; }
+
+/* Portada y fichas decorativas */
+.oa-hero { display: grid; grid-template-columns: minmax(0, 1.13fr) minmax(0, 1fr); gap: 45px; padding-block: 67px 65px; align-items: center; }
+.oa-kicker { display: flex; align-items: center; gap: 9px; font-family: Consolas, monospace; font-size: 10px; letter-spacing: 1.35px; color: #706b62; }
+.oa-kicker-square { display: block; width: 6px; height: 6px; background: var(--oa-orange); }
+.oa-kicker-divider { padding-inline: 5px; color: #a29a8b; }
+.oa-hero h1 { margin-top: 22px; font-size: clamp(44px, 6.2vw, 86px); line-height: 1.03; font-weight: 500; letter-spacing: -4.8px; }
+.oa-hero h1 em { display: inline-block; font-family: Georgia, "Times New Roman", serif; font-weight: 400; color: var(--oa-orange); font-size: 1.09em; letter-spacing: -4px; }
+.oa-hero-description { margin-top: 26px!important; max-width: 470px; font-size: 14px; line-height: 1.8; color: #706c63; }
+.oa-text-link { display: inline-flex; align-items: center; gap: 27px; padding: 11px 0 8px; margin-top: 19px; border-bottom: 1px solid #797164; font-size: 12px; font-weight: 600; }
+.oa-text-link:hover { color: var(--oa-orange); border-color: var(--oa-orange); }
+.oa-text-link .oa-icon { width: 17px; height: 17px; }
+.oa-archive-art { position: relative; height: 370px; isolation: isolate; }
+.oa-art-label, .oa-art-footnote { position: absolute; font-family: Consolas, monospace; font-size: 8px; letter-spacing: 1.5px; color: #8b8377; }
+.oa-art-label { top: -5px; left: 28px; }.oa-art-footnote { bottom: -6px; right: 0; }
+.oa-art-orbit { position: absolute; width: 324px; height: 324px; border: 1px solid #ddd6c9; border-radius: 50%; right: -4px; top: 8px; z-index: -1; }
+.oa-art-orbit::after { content: "+"; position: absolute; right: 47px; top: 23px; color: #b9aa91; font-family: Consolas, monospace; font-size: 17px; background: var(--oa-paper); }
+.oa-file { position: absolute; width: 83%; height: 256px; border: 1px solid #bcb2a0; box-shadow: 0 12px 26px #3831200b; }
+.oa-file-tab { position: absolute; top: -26px; left: -1px; height: 26px; width: 117px; padding: 8px 14px; border: 1px solid; border-color: inherit; border-bottom: 0; background: inherit; border-top-left-radius: 5px; border-top-right-radius: 13px; font-family: Consolas, monospace; font-size: 9px; letter-spacing: 1.4px; line-height: 1; }
+.oa-file-back { top: 42px; left: 47px; transform: rotate(10deg); background: #e5decf; }
+.oa-file-middle { top: 66px; left: 33px; transform: rotate(3deg); background: #f9f5ea; }
+.oa-file-middle .oa-file-tab { left: 142px; width: 97px; }
+.oa-file-range { position: absolute; right: 18px; top: 15px; font-family: Georgia, serif; font-size: 26px; color: #bbb0a0; }
+.oa-file-front { top: 93px; left: 20px; transform: rotate(-5deg); border-color: #b84831; background: #cd5137; color: #fff1df; padding: 23px 26px 21px; box-shadow: 0 22px 26px #44332212; }
+.oa-file-front .oa-file-tab { background: #cd5137; width: 123px; }
+.oa-file-top { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e38b733d; padding-bottom: 14px; font-family: Consolas, monospace; font-size: 8px; letter-spacing: 1px; }
+.oa-file-title { margin-top: 18px; font-size: clamp(24px, 3.2vw, 42px); font-weight: 500; letter-spacing: -1.7px; line-height: 1.03; }
+.oa-file-title i { font-family: Georgia, serif; font-weight: 400; }.oa-file-title > span { color: #40281e; }
+.oa-file-bottom { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; margin-top: 26px; font-family: Consolas, monospace; font-size: 7px; letter-spacing: 1px; }
+.oa-barcode { display: block; width: 68px; height: 20px; background: repeating-linear-gradient(90deg, #f1d9b5 0 1px, transparent 1px 4px, #f1d9b5 4px 7px, transparent 7px 9px, #f1d9b5 9px 10px, transparent 10px 13px); opacity: .7; }
+
+/* Información académica */
+.oa-project-facts { display: grid; grid-template-columns: 1.13fr .9fr 1.5fr .8fr; gap: 24px; padding-block: 24px 25px; border-block: 1px solid #aaa294; }
+.oa-project-facts > div, .oa-team-shortcut { display: flex; flex-direction: column; gap: 7px; }
+.oa-project-facts > div > span, .oa-team-shortcut > span { font-family: Consolas, monospace; font-size: 8px; color: #8b8173; letter-spacing: 1.1px; }
+.oa-project-facts strong { font-size: 12px; font-weight: 500; }
+.oa-team-shortcut { padding-left: 23px; border-left: 1px solid var(--oa-line); }
+.oa-team-shortcut strong { display: flex; align-items: center; gap: 16px; }.oa-team-shortcut .oa-icon { width: 14px; height: 14px; }.oa-team-shortcut:hover { color: var(--oa-orange); }
+
+/* Espacios de integración: estructura de la persona 1 */
+.oa-laboratory, .oa-team-section, .oa-project { scroll-margin-top: 24px; }
+.oa-laboratory { padding-top: 54px; }
+.oa-section-index { font-family: Consolas, monospace; font-size: 10px; letter-spacing: 1.4px; color: var(--oa-orange); }
+.oa-section-topline { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.oa-stage-label { font-family: Consolas, monospace; font-size: 8px; color: #8b8173; letter-spacing: .8px; border: 1px solid #d9d0c2; padding: 5px 8px; }
+.oa-section-heading { display: flex; align-items: center; justify-content: space-between; gap: 30px; margin: 15px 0 27px; }
+.oa-section-heading h2 { font-size: 34px; font-weight: 500; letter-spacing: -1.5px; line-height: 1.15; }.oa-section-heading h2 > span { color: var(--oa-orange); }
+.oa-section-heading > p { font-size: 11px; line-height: 1.7; color: #797164; }
+.oa-workspace-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 20px; }
+.oa-module { min-width: 0; background: #faf8f2; border: 1px solid #ccc2b2; position: relative; }
+.oa-module-heading { min-height: 64px; padding: 16px 21px; border-bottom: 1px solid #dbd2c4; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.oa-module-heading > div { display: flex; align-items: center; gap: 13px; }
+.oa-module-number { width: 24px; height: 24px; display: grid; place-items: center; background: #e9e2d5; color: #655e52; font-family: Georgia, serif; font-style: italic; font-size: 16px; }
+.oa-module h3 { font-size: 13px; font-weight: 500; letter-spacing: -.15px; }
+.oa-owner { flex-shrink: 0; font-family: Consolas, monospace; font-size: 8px; letter-spacing: .8px; color: #97866f; }
+.oa-entry-module { border-top: 3px solid var(--oa-orange); }.oa-entry-module .oa-module-heading { min-height: 62px; }
+.oa-module-body { padding: 18px; }.oa-slot { min-width: 0; }.oa-slot + .oa-slot { margin-top: 14px; }
+.oa-reserved { position: relative; min-height: 81px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 5px; padding: 19px 22px; border: 1px dashed #d5cbbc; background-image: radial-gradient(#cec1ab52 .6px, transparent .6px); background-size: 8px 8px; }
+.oa-slot-reference { font-family: Consolas, monospace; font-size: 7px; letter-spacing: 1px; color: #908572; }
+.oa-reserved strong { font-size: 13px; font-weight: 500; color: #796f5e; }
+.oa-slot-pending { font-size: 10px; color: #958873; }
+.oa-slot-corner { position: absolute; bottom: 12px; right: 13px; width: 8px; height: 8px; border-bottom: 1px solid #bca88a; border-right: 1px solid #bca88a; }
+.oa-reserved-large { min-height: 132px; }
+.oa-form-area { height: calc(100% - 62px); }.oa-form-area > .oa-reserved { height: 100%; min-height: 241px; }
+.oa-integration-note { display: flex; align-items: center; gap: 7px; font-family: Consolas, monospace; font-size: 9px; color: #8f8068; margin-top: 14px!important; }
+.oa-integration-note > span { width: 4px; height: 4px; border: 1px solid #ae9270; }
+
+/* Equipo: lista tipográfica con los seis nombres completos */
+.oa-team-section { padding-top: 67px; padding-bottom: 58px; }
+.oa-team-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; margin: 18px 0 28px; }
+.oa-team-heading h2 { font-size: 37px; font-weight: 400; letter-spacing: -1.8px; line-height: 1.15; }
+.oa-team-heading h2 em { font-family: Georgia, serif; font-size: 1.12em; font-weight: 400; color: #897b64; }
+.oa-teacher-note { padding-bottom: 5px; padding-left: 18px; border-left: 2px solid var(--oa-orange); }
+.oa-teacher-note > span { display: block; font-family: Consolas, monospace; font-size: 7px; letter-spacing: 1px; color: #95846d; }
+.oa-teacher-note strong { display: block; font-size: 20px; font-weight: 400; letter-spacing: -.6px; margin-top: 7px; }
+.oa-team-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 54px; padding: 0; margin: 0; list-style: none; border-top: 1px solid #a89a84; }
+.oa-member { min-width: 0; display: flex; align-items: center; gap: 22px; border-bottom: 1px solid #d4c6b2; padding: 22px 4px; }
+.oa-member-index { flex-shrink: 0; align-self: flex-start; margin-top: 4px; font-family: Consolas, monospace; font-size: 9px; color: #a08a6b; }
+.oa-member h3 { font-size: 16px; font-weight: 500; letter-spacing: -.2px; overflow-wrap: anywhere; }
+.oa-member p { font-size: 12px; color: #8f7b5c; margin-top: 4px; overflow-wrap: anywhere; }
+.oa-member-marker { flex-shrink: 0; margin-left: auto; width: 5px; height: 5px; border: 1px solid #b8a283; }
+
+/* Presentación del proyecto y pie de página */
+.oa-project { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; padding: 42px 48px; background: #292722; color: #f3e9d7; position: relative; }
+.oa-project::before { content: ""; position: absolute; top: -6px; left: 26px; width: 85px; height: 6px; background: var(--oa-orange); }
+.oa-project .oa-section-index { color: #e18659; }
+.oa-project h2 { font-size: 45px; font-weight: 400; letter-spacing: -1.8px; line-height: 1.1; margin-top: 28px; }
+.oa-project h2 em { font-family: Georgia, serif; font-weight: 400; color: #c4ac88; }
+.oa-project-right { padding-top: 4px; }.oa-project-symbol { display: block; font-family: Consolas, monospace; font-size: 17px; letter-spacing: 1px; color: #d1af7e; margin-bottom: 21px; }
+.oa-project-right > p { max-width: 450px; font-size: 12px; line-height: 1.9; color: #d8c9b0; }
+.oa-project-right > .oa-project-secondary { margin-top: 13px; color: #ac997c; font-size: 11px; }
+.oa-project-label { display: block; margin-top: 25px; padding-top: 13px; border-top: 1px solid #514637; font-family: Consolas, monospace; font-size: 7px; letter-spacing: 1.3px; color: #bca483; }
+.oa-footer { display: flex; align-items: center; justify-content: space-between; gap: 22px; padding-block: 29px; }
+.oa-footer-brand { font-size: 22px; font-weight: 600; letter-spacing: -1px; }.oa-footer-brand > span { color: var(--oa-orange); }
+.oa-footer > span { font-size: 9px; color: #988365; }.oa-back-to-top { display: flex; align-items: center; gap: 9px; font-size: 10px; color: #806b4f!important; }.oa-back-to-top .oa-icon { width: 15px; height: 15px; }
+.oa-startup-error { max-width: 640px; margin: 80px auto; padding: 30px; background: #faf8f2; border: 1px solid #c9bcaa; font-family: Arial, sans-serif; }.oa-startup-error h1 { font-size: 22px; }.oa-startup-error p { line-height: 1.6; }.oa-startup-error button { padding: 12px; background: #c74b32; color: #fff; border: 0; cursor: pointer; }
+
+@media (max-width: 1150px) {
+  .oa-container { width: calc(100% - 64px); }
+  .oa-navigation { gap: 23px; }
+  .oa-hero { gap: 25px; padding-block: 56px; }
+  .oa-hero h1 { letter-spacing: -3.5px; }.oa-hero h1 em { letter-spacing: -3px; }
+  .oa-archive-art { height: 330px; }.oa-file { height: 227px; }.oa-file-front { padding: 20px; }.oa-file-bottom { margin-top: 22px; font-size: 6px; }.oa-file-title { margin-top: 16px; }
+  .oa-art-orbit { width: 275px; height: 275px; }.oa-file-back { left: 32px; top: 34px; }.oa-file-middle { left: 21px; top: 60px; }.oa-file-front { left: 9px; top: 83px; }
+  .oa-project-facts { gap: 17px; }.oa-project-facts strong { font-size: 11px; }.oa-team-shortcut { padding-left: 17px; }
+  .oa-module-heading { padding-inline: 16px; gap: 8px; }.oa-module-heading > div { gap: 9px; }.oa-module h3 { font-size: 12px; }.oa-owner { font-size: 7px; }
+  .oa-project { padding: 38px; gap: 36px; }
+}
+@media (max-width: 900px) {
+  .oa-header-inner { gap: 22px; }.oa-university-mark { display: none; }.oa-navigation { gap: 24px; }
+  .oa-hero { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 12px; }
+  .oa-hero h1 { font-size: 55px; letter-spacing: -3px; }.oa-hero h1 em { letter-spacing: -2.5px; }
+  .oa-kicker { font-size: 8px; letter-spacing: 1px; }.oa-hero-description { font-size: 12px; }.oa-text-link { font-size: 11px; }
+  .oa-archive-art { height: 292px; }.oa-file { height: 204px; }.oa-file-front { padding: 17px; }.oa-file-title { font-size: 28px; letter-spacing: -1px; }.oa-file-bottom { margin-top: 17px; }.oa-barcode { width: 43px; height: 17px; }.oa-file-top { padding-bottom: 10px; font-size: 6px; }
+  .oa-art-label { left: 12px; font-size: 6px; }.oa-art-footnote { font-size: 6px; bottom: -10px; }.oa-art-orbit { width: 230px; height: 230px; }
+  .oa-file-back { top: 25px; left: 28px; }.oa-file-middle { top: 44px; left: 18px; }.oa-file-front { top: 69px; left: 3px; }
+  .oa-project-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 19px; }.oa-team-shortcut { border: 0; padding-left: 0; }
+  .oa-workspace-grid { grid-template-columns: 1fr; gap: 19px; }.oa-module h3 { font-size: 14px; }.oa-owner { font-size: 8px; }
+  .oa-form-area { height: auto; }.oa-form-area > .oa-reserved { min-height: 145px; }
+  .oa-team-grid { column-gap: 28px; }.oa-member { gap: 13px; }.oa-member h3 { font-size: 15px; }
+  .oa-project { gap: 27px; padding: 34px; }.oa-project h2 { font-size: 37px; }.oa-footer > span { max-width: 240px; text-align: center; }
+}
+@media (max-width: 650px) {
+  .oa-container { width: calc(100% - 40px); }
+  .oa-header-inner { min-height: auto; flex-wrap: wrap; padding-block: 22px 11px; gap: 18px; }.oa-brand { font-size: 25px; }.oa-brand-mark { width: 38px; height: 40px; font-size: 35px; }
+  .oa-navigation { width: 100%; justify-content: space-between; gap: 12px; }.oa-navigation a { font-size: 11px; gap: 6px; padding-block: 8px; }
+  .oa-hero { grid-template-columns: 1fr; padding-top: 36px; padding-bottom: 32px; gap: 30px; }
+  .oa-hero h1 { font-size: clamp(46px, 11.5vw, 68px); line-height: 1.03; margin-top: 19px; letter-spacing: -2.8px; }.oa-hero h1 em { letter-spacing: -2.5px; }
+  .oa-hero-description { font-size: 13px; margin-top: 23px!important; }.oa-text-link { margin-top: 12px; font-size: 12px; }
+  .oa-archive-art { width: min(400px, 100%); height: 310px; margin-inline: auto; }.oa-file { height: 222px; }.oa-file-front { top: 75px; left: 15px; padding: 19px 23px; }.oa-file-middle { top: 48px; left: 24px; }.oa-file-back { top: 29px; left: 38px; }.oa-file-title { font-size: 33px; }.oa-file-top { font-size: 7px; padding-bottom: 12px; }.oa-file-bottom { font-size: 6px; margin-top: 22px; }.oa-art-label { top: -1px; left: 8px; font-size: 7px; }.oa-art-footnote { bottom: -13px; right: 4px; font-size: 6px; }.oa-art-orbit { width: 262px; height: 262px; right: 8px; }
+  .oa-project-facts { padding-block: 21px; column-gap: 22px; }.oa-project-facts strong { font-size: 11px; line-height: 1.6; }.oa-project-facts > div > span, .oa-team-shortcut > span { font-size: 7px; }
+  .oa-laboratory { padding-top: 37px; }.oa-section-index { font-size: 9px; }.oa-stage-label { font-size: 6px; letter-spacing: .3px; }.oa-section-heading { align-items: flex-start; flex-direction: column; margin-block: 15px 23px; gap: 12px; }.oa-section-heading h2 { font-size: 31px; }.oa-section-heading > p { font-size: 11px; }.oa-section-heading > p br { display: none; }
+  .oa-module-heading { padding: 15px; }.oa-module-body { padding: 14px; }.oa-module h3 { font-size: 12px; }.oa-owner { font-size: 7px; }.oa-reserved { padding: 16px 19px; }.oa-reserved strong { font-size: 12px; }.oa-integration-note { font-size: 8px; line-height: 1.6; align-items: baseline; }
+  .oa-team-section { padding-block: 44px 39px; }.oa-team-heading { align-items: flex-start; flex-direction: column; gap: 25px; }.oa-team-heading h2 { font-size: 32px; }.oa-teacher-note { padding-left: 12px; }.oa-teacher-note strong { font-size: 17px; }.oa-teacher-note > span { font-size: 6px; }
+  .oa-team-grid { grid-template-columns: 1fr; }.oa-member { padding-block: 19px; gap: 20px; }.oa-member h3 { font-size: 16px; }.oa-member p { font-size: 12px; }.oa-member-index { font-size: 9px; }
+  .oa-project { grid-template-columns: 1fr; padding: 29px 24px; gap: 25px; }.oa-project h2 { font-size: 39px; margin-top: 20px; }.oa-project-symbol { font-size: 14px; margin-bottom: 14px; }.oa-project-right > p { font-size: 12px; }.oa-project-right > .oa-project-secondary { font-size: 11px; }.oa-project-label { font-size: 6px; }
+  .oa-footer { flex-wrap: wrap; gap: 16px; padding-block: 25px; }.oa-footer-brand { font-size: 21px; }.oa-footer > span { order: 3; max-width: none; flex-basis: 100%; text-align: left; font-size: 8px; }.oa-back-to-top { font-size: 9px; }
+}
+@media (max-width: 380px) {
+  .oa-container { width: calc(100% - 32px); }.oa-hero h1 { font-size: 44px; }.oa-archive-art { height: 278px; }.oa-file { height: 202px; width: 82%; }.oa-file-back { left: 27px; }.oa-file-middle { left: 20px; }.oa-file-front { left: 8px; top: 65px; padding: 16px 18px; }.oa-file-title { font-size: 29px; }.oa-file-bottom { margin-top: 19px; }.oa-file-top { font-size: 6px; }.oa-barcode { width: 40px; height: 15px; }.oa-art-orbit { width: 220px; height: 220px; }.oa-file-middle .oa-file-tab { left: 115px; width: 87px; }
+  .oa-module-heading > div { gap: 8px; }.oa-module h3 { font-size: 11px; }.oa-owner { font-size: 6px; }.oa-module-number { width: 21px; height: 22px; }.oa-navigation a { font-size: 10px; }
+}
+@media (prefers-reduced-motion: reduce) { html:root { scroll-behavior: auto; } }
+</style></head><body><div id="root"><div class="oa-app" id="inicio"><a class="oa-skip" href="#contenido">Saltar al contenido</a><header class="oa-header"><div class="oa-container oa-header-inner"><a class="oa-brand" href="#inicio" aria-label="ArchivoLab, inicio"><span class="oa-brand-mark" aria-hidden="true">a<span>.</span></span><span>ArchivoLab<span class="oa-brand-period">.</span><small>ORGANIZACIÓN DE ARCHIVOS</small></span></a><nav class="oa-navigation" aria-label="Navegación principal"><a href="#registros"><span>01</span> Laboratorio</a><a href="#equipo"><span>02</span> Equipo</a><a href="#proyecto"><span>03</span> Proyecto</a></nav><span class="oa-university-mark">UNT<span>TRUJILLO / PERÚ</span></span></div></header><main id="contenido" class="oa-container" tabindex="-1"><section class="oa-hero" aria-labelledby="oa-title"><div class="oa-hero-copy"><p class="oa-kicker"><span class="oa-kicker-square"></span> LABORATORIO ACADÉMICO <span class="oa-kicker-divider">/</span> UNT</p><h1 id="oa-title">Organización<br/><em>de archivos.</em></h1><p class="oa-hero-description">Detrás de cada nombre, un registro.<br/>Detrás de cada registro, una forma de organizar la información.</p><a class="oa-text-link" href="#registros">Explorar el laboratorio <svg class="oa-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 16 17 4M6 4h11v11"></path></svg></a></div><div class="oa-archive-art" aria-hidden="true"><span class="oa-art-label">ESTUDIO DE REGISTROS / OA</span><div class="oa-art-orbit"></div><div class="oa-file oa-file-back"><span class="oa-file-tab">ARCHIVO</span></div><div class="oa-file oa-file-middle"><span class="oa-file-tab">ÍNDICE</span><span class="oa-file-range">A—Z</span></div><div class="oa-file oa-file-front"><span class="oa-file-tab">PERSONAS</span><div class="oa-file-top"><span>ARCHIVOLAB</span><span>OA / 01</span></div><div class="oa-file-title">Nombres<br/><i>&amp;</i> apellidos<span>.</span></div><div class="oa-file-bottom"><span>EL ORDEN COMIENZA AQUÍ</span><span class="oa-barcode"></span></div></div><span class="oa-art-footnote">INFORMACIÓN CON ESTRUCTURA.</span></div></section><div class="oa-project-facts" aria-label="Información del curso"><div><span>ASIGNATURA</span><strong>Organización de Archivos</strong></div><div><span>DOCENTE</span><strong>Max Castro</strong></div><div><span>INSTITUCIÓN</span><strong>Universidad Nacional de Trujillo</strong></div><a href="#equipo" class="oa-team-shortcut"><span>EQUIPO DE TRABAJO</span><strong>06 integrantes <svg class="oa-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 16 17 4M6 4h11v11"></path></svg></strong></a></div><section class="oa-laboratory" id="registros" aria-labelledby="oa-lab-title"><div class="oa-section-topline"><p class="oa-section-index">01 / LABORATORIO</p><span class="oa-stage-label">ESTRUCTURA · PERSONA 1</span></div><div class="oa-section-heading"><h2 id="oa-lab-title">Mesa de trabajo<span>.</span></h2><p>Un espacio para cada componente.<br/> Una estructura para integrarlos.</p></div><div class="oa-workspace-grid"><section class="oa-module oa-query-module" aria-labelledby="oa-query-title"><header class="oa-module-heading"><div><span class="oa-module-number">A</span><h3 id="oa-query-title">Consulta de personas</h3></div><span class="oa-owner">PERSONA 2</span></header><div class="oa-module-body"><div class="oa-slot"><div class="oa-reserved"><span class="oa-slot-reference">ESPACIO 01</span><strong>Buscador</strong><span class="oa-slot-pending">Pendiente de integración</span><span class="oa-slot-corner" aria-hidden="true"></span></div></div><div class="oa-slot"><div class="oa-reserved oa-reserved-large"><span class="oa-slot-reference">ESPACIO 02</span><strong>Tabla de personas</strong><span class="oa-slot-pending">Pendiente de integración</span><span class="oa-slot-corner" aria-hidden="true"></span></div></div></div></section><section class="oa-module oa-entry-module" aria-labelledby="oa-entry-title"><header class="oa-module-heading"><div><span class="oa-module-number">B</span><h3 id="oa-entry-title">Registro de personas</h3></div><span class="oa-owner">PERSONA 3</span></header><div class="oa-module-body oa-form-area"><div class="oa-reserved oa-reserved-large"><span class="oa-slot-reference">ESPACIO 03</span><strong>Formulario de registro</strong><span class="oa-slot-pending">Pendiente de integración</span><span class="oa-slot-corner" aria-hidden="true"></span></div></div></section></div><p class="oa-integration-note"><span></span> Áreas reservadas para los componentes del equipo.</p></section><section class="oa-team-section" id="equipo" aria-labelledby="oa-team-title"><p class="oa-section-index">02 / EQUIPO DE TRABAJO</p><div class="oa-team-heading"><h2 id="oa-team-title">Seis personas.<br/><em>Un mismo proyecto.</em></h2><div class="oa-teacher-note"><span>BAJO LA DIRECCIÓN DEL DOCENTE</span><strong>Max Castro</strong></div></div><ol class="oa-team-grid" aria-label="Integrantes del proyecto"><li class="oa-member"><span class="oa-member-index" aria-hidden="true">01</span><div><h3>Burgos Mendoza</h3><p>Cristian Albert</p></div><span class="oa-member-marker" aria-hidden="true"></span></li><li class="oa-member"><span class="oa-member-index" aria-hidden="true">02</span><div><h3>Benites Alejandria</h3><p>Cesar Leandro</p></div><span class="oa-member-marker" aria-hidden="true"></span></li><li class="oa-member"><span class="oa-member-index" aria-hidden="true">03</span><div><h3>Carranza Vargas</h3><p>Kevin Alexis</p></div><span class="oa-member-marker" aria-hidden="true"></span></li><li class="oa-member"><span class="oa-member-index" aria-hidden="true">04</span><div><h3>Castillo Cisneros</h3><p>Kiara Marley</p></div><span class="oa-member-marker" aria-hidden="true"></span></li><li class="oa-member"><span class="oa-member-index" aria-hidden="true">05</span><div><h3>Julca Davila</h3><p>Ricky Gilbert</p></div><span class="oa-member-marker" aria-hidden="true"></span></li><li class="oa-member"><span class="oa-member-index" aria-hidden="true">06</span><div><h3>Silvestre Ferrer</h3><p>Jeffran Alberto</p></div><span class="oa-member-marker" aria-hidden="true"></span></li></ol></section><section class="oa-project" id="proyecto" aria-labelledby="oa-project-title"><div class="oa-project-left"><p class="oa-section-index">03 / EL PROYECTO</p><h2 id="oa-project-title">Del registro<br/><em>a la consulta.</em></h2></div><div class="oa-project-right"><span class="oa-project-symbol" aria-hidden="true">[ SQL ]</span><p>Un laboratorio para comprobar cómo se consulta, agrega, modifica y elimina información de una base de datos de nombres y apellidos.</p><p class="oa-project-secondary">La estructura visual reúne los componentes del equipo para su posterior conexión con SQL.</p><span class="oa-project-label">ORGANIZACIÓN DE ARCHIVOS · UNT</span></div></section></main><footer class="oa-footer oa-container"><a class="oa-footer-brand" href="#inicio">ArchivoLab<span>.</span></a><span>Proyecto académico / Universidad Nacional de Trujillo</span><a class="oa-back-to-top" href="#inicio">Volver al inicio <svg class="oa-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 16 17 4M6 4h11v11"></path></svg></a></footer></div></div></body></html>
