@@ -1,4 +1,4 @@
-export default function TablaPersonas({ personas }) {
+export default function TablaPersonas({ personas = [] }) {
   return (
     <div className="p2-table-wrapper">
       <table className="p2-table">
@@ -14,11 +14,11 @@ export default function TablaPersonas({ personas }) {
         <tbody>
           {personas.length > 0 ? (
             personas.map((persona, index) => (
-              <tr key={index}>
-                <td>{persona.apellidos}</td>
-                <td>{persona.nombres}</td>
-                <td>{persona.dni}</td>
-                <td>{persona.numeroActa}</td>
+              <tr key={persona.Id || index}>
+                <td>{persona.Apellidos || persona.apellidos}</td>
+                <td>{persona.Nombres || persona.nombres}</td>
+                <td>{persona.DNI || persona.dni}</td>
+                <td>{persona.NumeroActa || persona.numeroActa}</td>
               </tr>
             ))
           ) : (

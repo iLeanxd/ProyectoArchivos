@@ -1,34 +1,51 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Home from './pages/Home.jsx';
 import Buscador from './components/Buscador.jsx';
 import TablaPersonas from './components/TablaPersonas.jsx';
 import './styles/main.css';
 
-const integrantes = [
-  { apellidos: 'Burgos Mendoza', nombres: 'Cristian Albert', dni: '', numeroActa: '' },
-  { apellidos: 'Benites Alejandria', nombres: 'Cesar Leandro', dni: '', numeroActa: '' },
-  { apellidos: 'Carranza Vargas', nombres: 'Kevin Alexis', dni: '', numeroActa: '' },
-  { apellidos: 'Castillo Cisneros', nombres: 'Kiara Marley', dni: '', numeroActa: '' },
-  { apellidos: 'Julca Davila', nombres: 'Ricky Gilbert', dni: '', numeroActa: '' },
-  { apellidos: 'Silvestre Ferrer', nombres: 'Jeffran Alberto', dni: '', numeroActa: '' },
-];
-
 export default function App() {
-  const [personas, setPersonas] = useState(integrantes);
+  const [todasLasPersonas, setTodasLasPersonas] = useState([]);
+  const [personas, setPersonas] = useState([]);
+  const [cargando, setCargando] = useState(true);
 
+  // Obtener los datos reales desde Azure SQL
+  useEffect(() => {
+    fetch('/api/getPersonas')
+      .then((res) => {
+        if (!res.ok) throw new Error('Error al conectar con la API');
+        return res.json();
+      })
+      .then((data) => {
+        setTodasLasPersonas(data);
+        setPersonas(data);
+        setCargando(false);
+      })
+      .catch((err) => {
+        console.error('Error cargando personas:', err);
+        setCargando(false);
+      });
+  }, []);
+
+  // Función de búsqueda sobre los datos de Azure
   const handleBuscar = (termino) => {
     const texto = termino.trim().toLowerCase();
 
     if (!texto) {
-      setPersonas(integrantes);
+      setPersonas(todasLasPersonas);
       return;
     }
 
-   const resultados = integrantes.filter((persona) =>
-  `${persona.nombres} ${persona.apellidos} ${persona.dni} ${persona.numeroActa}`
-    .toLowerCase()
-    .includes(texto)
-);
+    const resultados = todasLasPersonas.filter((persona) => {
+      const nombres = persona.Nombres || persona.nombres || '';
+      const apellidos = persona.Apellidos || persona.apellidos || '';
+      const dni = persona.DNI || persona.dni || '';
+      const numeroActa = persona.NumeroActa || persona.numeroActa || '';
+
+      return `${nombres} ${apellidos} ${dni} ${numeroActa}`
+        .toLowerCase()
+        .includes(texto);
+    });
 
     setPersonas(resultados);
   };
@@ -36,7 +53,13 @@ export default function App() {
   return (
     <Home
       buscador={<Buscador onBuscar={handleBuscar} />}
-      tablaPersonas={<TablaPersonas personas={personas} />}
+      tablaPersonas={
+        cargando ? (
+          <p style={{ padding: '1rem' }}>⏳ Cargando actas desde Azure SQL...</p>
+        ) : (
+          <TablaPersonas personas={personas} />
+        )
+      }
     />
   );
 }
